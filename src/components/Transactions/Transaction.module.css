@@ -1,0 +1,37 @@
+.header {
+    width: 261px;
+    height: 32px;
+    top: 399px;
+    left: 32px;
+    gap: 0px;
+    font: 'Ubuntu';
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 32.17px;
+    text-align: left;
+    color: #FFFFFF;
+    margin: 20px;
+
+}
+
+.container {
+    width: 950px;
+    height: 550px;
+    top: 440.97px;
+    left: 32px;
+    gap: 0px;
+    border-radius: 15px ;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    /* margin-top: 20px; */
+    margin: 20px auto;
+    padding: 10px;
+
+}
+
+.bar{
+    margin-left: 20px;
+    margin-top: 30px;
+    
+}

@@ -1,5 +1,4 @@
 
-import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import PieLabel from "../AppHead/PieLabel/PieLabel";
 import styles from './ExpensePieChart.module.css'

@@ -4,7 +4,6 @@
     top: 140px;
     left: 90px;
     gap: 0px;
-    opacity: 0px;
     background: #9B9B9B;
     display: flex;
     flex-direction: column;
@@ -29,7 +28,7 @@
     top: 192px;
     left: 113px;
     gap: 0px;
-    opacity: 0px;
+    
     font: 'Ubuntu';
     font-size: 30px;
     font-weight: 400;
@@ -51,8 +50,8 @@
     height: 38px;
     /* top: 245px; */
     /* left: 183.88px; */
-    /* gap: 0px;
-    opacity: 0px; */
+    /* gap: 0px;*/
+    
     background: linear-gradient(90deg, #B5DC52 0%, #89E148 100%);
     color: #FFFFFF;
     border-radius: 12px;

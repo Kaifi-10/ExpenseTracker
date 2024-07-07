@@ -1,0 +1,49 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .arrowButton {
+    width: 40px;
+    height: 40px;
+    top: 739px;
+    left: 319px;
+    gap: 0px;
+    border-radius: 15px;
+    background: linear-gradient(0deg, #F1F1F1, #F1F1F1);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: none;
+
+  }
+  
+  .arrowButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .pageNumber {
+    font-size: 16px;
+    margin: 0 10px;
+    width: 37px;
+    height: 37px;
+    top: 739px;
+    left: 370px;
+    gap: 0px;
+    border-radius: 5px ;
+    background: #43967B;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222222;
+    
+  }

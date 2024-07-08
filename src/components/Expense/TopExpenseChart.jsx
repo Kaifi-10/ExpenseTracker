@@ -16,21 +16,21 @@ const data = [
   {
     name: "Entertainment",
     uv: 590,
-    pv: 800,
+    value: 800,
     amt: 1400,
     cnt: 490
   },
   {
     name: "Food",
     uv: 868,
-    pv: 967,
+    value: 967,
     amt: 1506,
     cnt: 590
   },
   {
     name: "Travel",
     uv: 1397,
-    pv: 1098,
+    value: 1098,
     amt: 989,
     cnt: 350
   },
@@ -62,7 +62,7 @@ export default function App() {
         iconType="none"        
         />
       
-      <Bar dataKey="pv" barSize={20} fill="#413ea0" />
+      <Bar dataKey="value" barSize={20} fill="#413ea0" />
       
     </ComposedChart>
   );

@@ -5,9 +5,21 @@ import editIcon from '../../assets/editIcon.svg'
 import styles from './TransactionBar.module.css'
 import movieIcon from '../../assets/movie.svg'
 import travelIcon from '../../assets/travel.svg'
+import { useState } from 'react'
+import Modal from '../ExpenseForm/Modal'
 
 function TransactionBar(props) {
     const {name, date, category, price, key} = props
+
+    const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
     const selectIcon = () =>{
         if(category === "food") return foodIcon;
@@ -30,12 +42,18 @@ function TransactionBar(props) {
                 <span className={styles.transactionAmount}>₹{price}</span>
                 <div className={styles.buttonStyles}>
                     <button className={styles.closeIcon}><img src={closeIcon} alt='closeicon' /></button>
-                    <button className={styles.editIcon}><img src={editIcon} alt='closeicon'/></button>  
+                    <button className={styles.editIcon} onClick={handleOpenModal} ><img src={editIcon} alt='closeicon'/></button>  
                 </div>
             </div>
 
         </div>
         <hr />
+        <Modal 
+        isOpen={showModal} 
+        onRequestClose={handleCloseModal} 
+        formType="Edit Expense"
+        existingData={{ name, date, category, price, key }}
+      />
     </div>
     
   )

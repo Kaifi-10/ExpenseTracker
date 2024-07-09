@@ -1,15 +1,18 @@
 import React from 'react'
 import styles from './Card.module.css'
 import Modal from '../ExpenseForm/Modal';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AllContext } from '../AllContext';
 
 
-function Card({text, value}) {
+function Card({text, value, setExpenses, addTransaction}) {
 
 
     const [showModal, setShowModal] = useState(false);
     const [formType, setFormType] = useState('');
-    const [balance, setBalance] = useState(value)
+    // const [balance, setBalance] = useState(value)
+    // const [expenses, setExpenses] = useState([]);
+    const { balance, expenses, handleAddIncome, handleAddExpense } = useContext(AllContext);
 
   const handleOpenModal = (type) => {
     setFormType(type);
@@ -20,15 +23,23 @@ function Card({text, value}) {
     setShowModal(false);
   };
 
-  const handleAddIncome = (income) => { // added
-    setBalance(balance + income);
-    handleCloseModal();
-    };
+//   const handleAddIncome = (income) => { // added
+//     setBalance(balance + income);
+//     handleCloseModal();
+//     };
+
+//     const handleAddExpense = (expense) => { // added
+//         const newExpense = parseFloat(expense.price);
+//         setBalance(balance - newExpense);
+//         setExpenses(prevExpenses => [...prevExpenses, expense]);
+//         addTransaction(expense); // added
+//         handleCloseModal();
+//       };
 
   return (
     <div className={styles.cardContainer}>
         <div className={styles.cardText}>
-            <span className={styles.text}>{text}: <span className={text === "Expenses" ? styles.amountRed : styles.amountGreen}>₹{balance}</span></span>
+            <span className={styles.text}>{text}: <span className={text === "Expenses" ? styles.amountRed : styles.amountGreen}>₹{text === "Expenses" ? expenses : balance}</span></span>
             
             <button 
           className={text === "Expenses" ? styles.cardButtonRed : styles.cardButtonGreen}
@@ -43,6 +54,7 @@ function Card({text, value}) {
         formType={formType}
         existingData={null}
         handleAddIncome={handleAddIncome}
+        handleAddExpense={handleAddExpense}
       />
         
     </div>

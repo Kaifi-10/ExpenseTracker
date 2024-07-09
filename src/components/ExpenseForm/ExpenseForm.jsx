@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from './ExpenseForm.module.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AllContext } from '../AllContext';
 
 function ExpenseForm(props) {
 
-    const { toggleModal, formType, existingData, onRequestClose, handleAddIncome   } = props
+const { toggleModal, formType, existingData, onRequestClose /*handleAddIncome, handleAddExpense*/    } = props
+    const { handleAddIncome, handleAddExpense } = useContext(AllContext);
     console.log(formType)
 
 
@@ -15,7 +17,7 @@ function ExpenseForm(props) {
     date: ''
   });
 
-  const [balanceFormData, setBalanceFormData] = useState({ income: '' });
+  const [balanceFormData, setBalanceFormData] = useState({ income: '', expense: '' });
 
   useEffect(() => {
     if (existingData) {
@@ -40,8 +42,10 @@ function ExpenseForm(props) {
 const handleSubmit = (e) => {
     e.preventDefault();
     if (formType === "Add Income") {
-        handleAddIncome(balanceFormData.income); // added
-    }
+        handleAddIncome(balanceFormData.income); 
+    }else if (formType === "Add Expense") {
+        handleAddExpense(formData); 
+      }
 };
 
 
@@ -61,6 +65,7 @@ const handleSubmit = (e) => {
                 <input 
                 required
                 value={formData.price}
+                // value={balanceFormData.expense}
                 className={styles.formInput} 
                 onChange={handleChange} 
                 placeholder='Price' 

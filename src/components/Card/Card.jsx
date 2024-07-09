@@ -8,7 +8,8 @@ function Card({text, value}) {
 
 
     const [showModal, setShowModal] = useState(false);
-  const [formType, setFormType] = useState('');
+    const [formType, setFormType] = useState('');
+    const [balance, setBalance] = useState(value)
 
   const handleOpenModal = (type) => {
     setFormType(type);
@@ -19,10 +20,15 @@ function Card({text, value}) {
     setShowModal(false);
   };
 
+  const handleAddIncome = (income) => { // added
+    setBalance(balance + income);
+    handleCloseModal();
+    };
+
   return (
     <div className={styles.cardContainer}>
         <div className={styles.cardText}>
-            <span className={styles.text}>{text}: <span className={text === "Expenses" ? styles.amountRed : styles.amountGreen}>₹{value}</span></span>
+            <span className={styles.text}>{text}: <span className={text === "Expenses" ? styles.amountRed : styles.amountGreen}>₹{balance}</span></span>
             
             <button 
           className={text === "Expenses" ? styles.cardButtonRed : styles.cardButtonGreen}
@@ -36,6 +42,7 @@ function Card({text, value}) {
         onRequestClose={handleCloseModal} 
         formType={formType}
         existingData={null}
+        handleAddIncome={handleAddIncome}
       />
         
     </div>

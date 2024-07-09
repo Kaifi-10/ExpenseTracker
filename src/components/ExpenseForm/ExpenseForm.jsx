@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 function ExpenseForm(props) {
 
-    const { toggleModal, formType, existingData, onRequestClose  } = props
+    const { toggleModal, formType, existingData, onRequestClose, handleAddIncome   } = props
     console.log(formType)
 
 
@@ -32,6 +32,17 @@ function ExpenseForm(props) {
   };
 
   
+
+  const handleIncomeChange = (e) => {
+    setBalanceFormData({ income: +e.target.value });
+};
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formType === "Add Income") {
+        handleAddIncome(balanceFormData.income); // added
+    }
+};
 
 
     const expenseAndEditInput = () => {
@@ -99,8 +110,7 @@ function ExpenseForm(props) {
 
   return (
     <div>
-        {/* <form className='modalForm expensesForm' onSubmit={handleSubmit}> */}
-        <form className={styles.modalForm} >
+        <form className={styles.modalForm} onSubmit={handleSubmit}>
             <span className={styles.formHeading}>{formType=== "Add Income"? "Add Balance": formType}</span>
             <span className={styles.inputField}> 
                 {formType === "Add Income" ? incomeInputs() : expenseAndEditInput()}
@@ -109,10 +119,10 @@ function ExpenseForm(props) {
             {/* <FormButtons text={formType} toggleModal={toggleModal}/> */}
             {/* <button type="submit">{formType === "Add Income" ? "Add Income" : "Add Expenses"}</button>
             <button type="button" onClick={onRequestClose}>Cancel</button> */}
-            <div className={styles.formButtons}> {/* added */}
+            <div className={styles.formButtons}>
                     <button type="submit" className={styles.buttonSubmit}>{formType === "Add Income" ? "Add Income" : "Add Expenses"}</button>
                     <button type="button" onClick={onRequestClose} className={styles.buttonCancel}>Cancel</button>
-                </div> {/* added */}
+                </div> 
         </form>
 
     </div>

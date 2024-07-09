@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import ExpenseForm from "./ExpenseForm";
 import styles from './ExpenseForm.module.css'
 
-function Modal({ isOpen, onRequestClose, formType, existingData }) {
+function Modal({ isOpen, onRequestClose, formType, existingData, handleAddIncome  }) {
   return (
     <div className={styles.modalBody}>
         <ReactModal 
@@ -19,6 +19,7 @@ function Modal({ isOpen, onRequestClose, formType, existingData }) {
                 existingData={existingData} 
                 // onClick={onRequestClose}
                 onRequestClose={onRequestClose}
+                handleAddIncome={handleAddIncome}
                 
             />
 

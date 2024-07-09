@@ -1,5 +1,5 @@
 .cardContainer{
-    width: 355.41px;
+    width: 400px;
     height: 181px;
     top: 140px;
     left: 90px;
@@ -20,10 +20,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 400px;
 }
 
 .text{
-    width: 302px;
+    width: 402px;
     height: 34px;
     top: 192px;
     left: 113px;
@@ -40,6 +41,7 @@
 
 .amountGreen{
     color:  #9DFF5B;
+    width: 200px;
 }
 
 .amountRed{

@@ -6,6 +6,7 @@ import { useState, useContext } from 'react';
 import { dummyData } from './DummyData';
 import Card from '../Card/Card';
 import { AllContext } from '../AllContext';
+import { v1 as uuidv1 } from 'uuid';
 
 function Transaction() {
     
@@ -30,7 +31,7 @@ function Transaction() {
     const startIndex = (currentPage - 1) * transactionsPerPage;
     const endIndex = startIndex + transactionsPerPage;
     const currentTransactions = transactions.slice(startIndex, endIndex);
-
+    // const id = uuidv1()
   return (
     <div>
         <div className={styles.header}>
@@ -41,6 +42,7 @@ function Transaction() {
                     {currentTransactions.map(transaction => (
                             <TransactionBar 
                                 key={transaction.id}
+                                id={transaction.id}
                                 name={transaction.name}
                                 date={transaction.date}
                                 category={transaction.category}

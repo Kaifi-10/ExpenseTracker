@@ -1,16 +1,17 @@
 import { createContext, useState } from 'react';
-
+import { v1 as uuidv4 } from 'uuid';
 
 
 export const AllContext = createContext();
 
 export const AllProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
-  const [balance, setBalance] = useState(2000); // Example initial balance
-  const [expenses, setExpenses] = useState(500)
+  const [balance, setBalance] = useState(5000); // Example initial balance
+  const [expenses, setExpenses] = useState(0)
 
   const addTransaction = (transaction) => {
-    setTransactions((prevTransactions) => [transaction, ...prevTransactions]);
+    const transactionWithId = { ...transaction, id: uuidv4() };
+    setTransactions((prevTransactions) => [transactionWithId, ...prevTransactions]);
   };
 
   const handleAddIncome = (income) => {
@@ -24,8 +25,24 @@ export const AllProvider = ({ children }) => {
     setExpenses((prevExpenses) => prevExpenses + newExpense); // update expenses correctly
     setBalance((prevBalance) => prevBalance - newExpense); // deduct the amount from the balance
   
-    addTransaction(expense);
+    // addTransaction(expense);
+    addTransaction({ ...expense, id: uuidv4() });
   };
+
+  const handleEditExpense = (editedExpense) => {
+    setTransactions((prevTransactions) =>
+      prevTransactions.map((transaction) =>
+        transaction.id === editedExpense.id ? editedExpense : transaction
+      )
+    );
+
+    const oldExpense = transactions.find((t) => t.id === editedExpense.id);
+    const priceDifference = parseFloat(editedExpense.price) - parseFloat(oldExpense.price);
+
+    setExpenses((prevExpenses) => prevExpenses + priceDifference);
+    setBalance((prevBalance) => prevBalance - priceDifference);
+  };
+
 
   return (
     <AllContext.Provider value={{
@@ -33,7 +50,9 @@ export const AllProvider = ({ children }) => {
       balance,
       expenses,
       handleAddIncome,
-      handleAddExpense
+      handleAddExpense,
+      handleEditExpense,
+      addTransaction 
     }}>
       {children}
     </AllContext.Provider>

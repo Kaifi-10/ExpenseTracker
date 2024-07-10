@@ -9,7 +9,9 @@ import { useState } from 'react'
 import Modal from '../ExpenseForm/Modal'
 
 function TransactionBar(props) {
-    const {name, date, category, price, key} = props
+    console.log("transactionalBar PROPS:",props)
+    const {id, name, date, category, price } = props
+    
 
     const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +33,7 @@ function TransactionBar(props) {
         <div className={styles.TransactionBar}>
             <div className={styles.transactionContainer}>
                 <span className={styles.icon}>
-                    <img src={selectIcon()}  alt={key} />
+                    <img src={selectIcon()}  alt={id} />
                 </span>
                 <div className={styles.transactionText}>
                     <span className={styles.transactionName}> {name}</span>
@@ -52,7 +54,7 @@ function TransactionBar(props) {
         isOpen={showModal} 
         onRequestClose={handleCloseModal} 
         formType="Edit Expense"
-        existingData={{ name, date, category, price, key }}
+        existingData={{ id, name, date, category, price }}
       />
     </div>
     

@@ -6,8 +6,8 @@ import { AllContext } from '../AllContext';
 function ExpenseForm(props) {
 
 const { toggleModal, formType, existingData, onRequestClose /*handleAddIncome, handleAddExpense*/    } = props
-    const { handleAddIncome, handleAddExpense } = useContext(AllContext);
-    console.log(formType)
+    const { handleAddIncome, handleAddExpense, handleEditExpense } = useContext(AllContext);
+    // console.log(formType)
 
 
   const [formData, setFormData] = useState({
@@ -24,6 +24,7 @@ const { toggleModal, formType, existingData, onRequestClose /*handleAddIncome, h
       setFormData(existingData);
     }
   }, [existingData]);
+  console.log("FORM DATA",formData)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +46,10 @@ const handleSubmit = (e) => {
         handleAddIncome(balanceFormData.income); 
     }else if (formType === "Add Expense") {
         handleAddExpense(formData); 
+      }else if (formType === "Edit Expense") {
+        handleEditExpense(formData);
       }
+      onRequestClose();
 };
 
 
@@ -125,7 +129,7 @@ const handleSubmit = (e) => {
             {/* <button type="submit">{formType === "Add Income" ? "Add Income" : "Add Expenses"}</button>
             <button type="button" onClick={onRequestClose}>Cancel</button> */}
             <div className={styles.formButtons}>
-                    <button type="submit" className={styles.buttonSubmit}>{formType === "Add Income" ? "Add Income" : "Add Expenses"}</button>
+                    <button type="submit" className={styles.buttonSubmit} >{formType === "Add Income" ? "Add Income" : "Add Expenses"}</button>
                     <button type="button" onClick={onRequestClose} className={styles.buttonCancel}>Cancel</button>
                 </div> 
         </form>

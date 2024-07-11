@@ -2,13 +2,9 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import PieLabel from "../AppHead/PieLabel/PieLabel";
 import styles from './ExpensePieChart.module.css'
+import { AllContext } from "../AllContext";
+import { useContext, useState, useEffect } from "react";
 
-const data = [
-  { name: "Group A", value: 70 },
-  { name: "Group B", value: 20 },
-  { name: "Group C", value: 10 },
-
-];
 
 const COLORS = ["#FF9304", "#A000FF", "#FDE006"];
 
@@ -71,6 +67,35 @@ const App = () => {
     //         { name: 'Food', value: 0 },
     //         { name: 'Travel', value: 0 },
     //     ]);
+    const {transactions} = useContext(AllContext)
+    console.log("TRANSACTION PROP IN PIECHART:",transactions)
+    const [chartData, setChartData] = useState([
+      { name: "Food", value: 0 },
+      { name: "Entertainment", value: 0 },
+      { name: "Travel", value: 0 },
+  ]);
+
+  useEffect(() => {
+      const newChartData = [
+          { name: "Food", value: 0 },
+          { name: "Entertainment", value: 0 },
+          { name: "Travel", value: 0 },
+      ];
+
+      transactions.forEach(transaction => {
+          const category = transaction.category.toLowerCase();
+          const price = parseFloat(transaction.price);
+
+          const index = newChartData.findIndex(item => item.name.toLowerCase() === category);
+          if (index !== -1) {
+              newChartData[index].value += price;
+          }
+      });
+
+      setChartData(newChartData);
+  }, [transactions]);
+
+
         
     return (
         <div className={styles.pieChart}>
@@ -78,7 +103,7 @@ const App = () => {
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={400} height={400}>
                     <Pie
-                        data={data}
+                        data={chartData}
                         cx="50%"
                         cy="50%"
                         labelLine={false}
@@ -87,7 +112,7 @@ const App = () => {
                         fill="#8884d8"
                         dataKey="value"
                     >
-                        {data.map((entry, index) => (
+                        {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>

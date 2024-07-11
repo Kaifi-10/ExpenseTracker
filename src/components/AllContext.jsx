@@ -6,7 +6,7 @@ export const AllContext = createContext();
 
 export const AllProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
-  const [balance, setBalance] = useState(5000); // Example initial balance
+  const [balance, setBalance] = useState(5000); //  initial balance
   const [expenses, setExpenses] = useState(0)
 
   const addTransaction = (transaction) => {

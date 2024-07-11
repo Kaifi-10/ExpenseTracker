@@ -5,12 +5,14 @@ import editIcon from '../../assets/editIcon.svg'
 import styles from './TransactionBar.module.css'
 import movieIcon from '../../assets/movie.svg'
 import travelIcon from '../../assets/travel.svg'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Modal from '../ExpenseForm/Modal'
+import { AllContext } from '../AllContext'
 
 function TransactionBar(props) {
     console.log("transactionalBar PROPS:",props)
     const {id, name, date, category, price } = props
+    const { deleteTransaction } = useContext(AllContext)
     
 
     const [showModal, setShowModal] = useState(false);
@@ -21,6 +23,10 @@ function TransactionBar(props) {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleDelete = () => {
+    deleteTransaction(id);
   };
 
     const selectIcon = () =>{
@@ -43,7 +49,7 @@ function TransactionBar(props) {
             <div className={styles.transactionDetails}>
                 <span className={styles.transactionAmount}>₹{price}</span>
                 <div className={styles.buttonStyles}>
-                    <button className={styles.closeIcon}><img src={closeIcon} alt='closeicon' /></button>
+                    <button className={styles.closeIcon} onClick={handleDelete}><img src={closeIcon} alt='closeicon' /></button>
                     <button className={styles.editIcon} onClick={handleOpenModal} ><img src={editIcon} alt='closeicon'/></button>  
                 </div>
             </div>

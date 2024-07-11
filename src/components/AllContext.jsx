@@ -37,12 +37,21 @@ export const AllProvider = ({ children }) => {
     );
 
     const oldExpense = transactions.find((t) => t.id === editedExpense.id);
+    console.log("OLDEXPENSE",oldExpense)
     const priceDifference = parseFloat(editedExpense.price) - parseFloat(oldExpense.price);
 
     setExpenses((prevExpenses) => prevExpenses + priceDifference);
     setBalance((prevBalance) => prevBalance - priceDifference);
   };
 
+  const deleteTransaction = (id) => {
+    const transactionToDelete = transactions.find(t => t.id === id);
+    if (transactionToDelete) {
+      setTransactions(prevTransactions => prevTransactions.filter(t => t.id !== id));
+      setExpenses(prevExpenses => prevExpenses - parseFloat(transactionToDelete.price));
+      setBalance(prevBalance => prevBalance + parseFloat(transactionToDelete.price));
+    }
+  };
 
   return (
     <AllContext.Provider value={{
@@ -52,6 +61,7 @@ export const AllProvider = ({ children }) => {
       handleAddIncome,
       handleAddExpense,
       handleEditExpense,
+      deleteTransaction,
       addTransaction 
     }}>
       {children}

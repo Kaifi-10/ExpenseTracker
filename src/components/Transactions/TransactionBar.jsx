@@ -13,6 +13,9 @@ function TransactionBar(props) {
     console.log("transactionalBar PROPS:",props)
     const {id, name, date, category, price } = props
     const { deleteTransaction } = useContext(AllContext)
+    const {transactions} = useContext(AllContext)
+
+    console.log("transactionBar transactions:",transactions)
     
 
     const [showModal, setShowModal] = useState(false);
@@ -34,6 +37,9 @@ function TransactionBar(props) {
         if(category === "entertainment") return movieIcon;
         if(category === "travel") return travelIcon;
     }
+
+
+    
   return (
     <div>
         <div className={styles.TransactionBar}>
@@ -63,6 +69,7 @@ function TransactionBar(props) {
         existingData={{ id, name, date, category, price }}
       />
     </div>
+    
     
   )
 }

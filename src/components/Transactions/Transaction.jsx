@@ -37,6 +37,20 @@ function Transaction() {
         <div className={styles.header}>
             Recent Transactions
             <div className={styles.container}>
+
+              {!transactions.length ? (<div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "black",
+                    height: "100%",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  No transactions!
+                </div>) : (
+                  <>
                 <div className={styles.bar}>
                     {/* <TransactionBar name={name} date={date} category={category} price={price}/> */}
                     {currentTransactions.map(transaction => (
@@ -56,6 +70,10 @@ function Transaction() {
                 totalPages={totalPages} 
                 onPageChange={handlePageChange} 
                 />
+                </>
+              )}
+                
+                
             </div>
         </div>
     </div>

@@ -96,8 +96,35 @@ const App = () => {
   }, [transactions]);
 
 
+  // if (!chartData?.length) {
+  //   return (
+  //     <div
+  //       style={{
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //       }}
+  //     >
+  //       No transactions!
+  //     </div>
+  //   );
+  // }
         
     return (
+      <>
+      {!transactions.length ? (<div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#888",
+          height: "100%",
+          fontSize: "1.5rem",
+        }}
+      >
+        No transactions!
+      </div>) : (
+      
         <div className={styles.pieChart}>
             <div className={styles.pie}>
                 <ResponsiveContainer width="100%" height="100%">
@@ -119,12 +146,15 @@ const App = () => {
                     </PieChart>
                 </ResponsiveContainer>
             </div>
-            <div className={styles.pieLabelsDiv}>
+            
+        </div>
+      )}
+      <div className={styles.pieLabelsDiv}>
                 <PieLabel name="Food" color="#A000FF"/>
                 <PieLabel name="Entertainment" color="#FF9304"/>
                 <PieLabel name="Travel" color="#FDE006"/>
             </div>
-        </div>
+        </>
     );
 };
 

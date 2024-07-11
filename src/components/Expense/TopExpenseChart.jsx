@@ -1,5 +1,7 @@
 
 import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { AllContext } from "../AllContext";
 import {
   ComposedChart,
   
@@ -12,38 +14,56 @@ import {
   
 } from "recharts";
 
-const data = [
-  {
-    name: "Entertainment",
-    uv: 590,
-    value: 800,
-    amt: 1400,
-    cnt: 490
-  },
-  {
-    name: "Food",
-    uv: 868,
-    value: 967,
-    amt: 1506,
-    cnt: 590
-  },
-  {
-    name: "Travel",
-    uv: 1397,
-    value: 1098,
-    amt: 989,
-    cnt: 350
-  },
-  
-];
+
 
 export default function App() {
+
+  const {transactions} = useContext(AllContext)
+
+  const [chartData, setChartData] =  useState([
+    {name: "Entertainment", value: 0},
+    {name: "Food", value: 0},
+    {name: "Travel", value: 0}   
+  ]);
+
+  useEffect ( () =>{
+  
+      const newChartData = [
+        {name: "Entertainment", value: 0},
+        {name: "Food", value: 0},
+        {name: "Travel", value: 0}   
+      ]
+
+      transactions.forEach(transaction => {
+          const name = transaction.category.toLowerCase()
+          const price = parseFloat(transaction.price)  
+          
+          const index = newChartData.findIndex(item => item.name.toLowerCase() === name)
+          if(index !== -1){
+            newChartData[index].value += price
+          }
+      });
+
+      setChartData(newChartData)
+  },[transactions])
+
   return (
-    <ComposedChart
+    <>{!transactions.length ? (<div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "black",
+        height: "100%",
+        fontSize: "1.5rem",
+      }}
+    >
+      No transactions!
+    </div>) : (<ComposedChart
       layout="vertical"
       width={650}
       height={500}
-      data={data}
+      data={chartData}
       margin={{
         top: 20,
         right: 20,
@@ -64,6 +84,8 @@ export default function App() {
       
       <Bar dataKey="value" barSize={20} fill="#413ea0" />
       
-    </ComposedChart>
+    </ComposedChart>)}
+    
+    </>
   );
 }

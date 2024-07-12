@@ -16,7 +16,7 @@
 }
 
 .container {
-    width: 950px;
+    width: 1050px;
     height: 500px;
     top: 440.97px;
     left: 32px;
@@ -35,4 +35,21 @@
     margin-top: 30px;
     margin-bottom: 50px;
     
+}
+
+
+@media (max-width: 768px) {
+    .header {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .bar {
+        margin: 20px 10px 30px 10px;
+    }
 }

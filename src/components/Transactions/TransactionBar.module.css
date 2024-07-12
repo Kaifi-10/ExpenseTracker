@@ -82,6 +82,7 @@ img{
     justify-content: space-between; 
     align-items: center; /* Added */
     padding: 10px;
+    flex-wrap: wrap;
 }
 
 hr{
@@ -97,6 +98,7 @@ hr{
     display: flex;
     justify-content: space-around;
     /* gap: 5px; */
+    flex-wrap: wrap;
 }
 
 .transactionText{
@@ -125,10 +127,42 @@ hr{
 .transactionDetails { 
     display: flex;
     align-items: center; 
+    flex-wrap: wrap;
 }
 
 
 .transactionContainer { 
     display: flex; 
     align-items: center; 
+    flex-wrap: wrap;
+}
+
+
+@media (max-width: 768px) {
+    .icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .transactionName, .transactionDate {
+        font-size: 14px;
+    }
+
+    .closeIcon, .editIcon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .transactionAmount {
+        font-size: 14px;
+    }
+
+    .TransactionBar, .buttonStyles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    hr {
+        width: 100%;
+    }
 }

@@ -53,10 +53,10 @@
     }
   
     .card {
-        width: 100%;
+      width: 100%; /* Ensures cards take full width on smaller screens */
       justify-content: center;
-      flex-direction: column; /* Ensures the cards stack on top of each other */
-        align-items: center; /* Centers the cards horizontally */
+      flex-direction: column;
+      align-items: center;
     }
   
     .pieChart {
